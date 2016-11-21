@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block page_content %}
+<div class="page_content">
+	<h1>Search Results</h1>
+	<h2>Results for {{ terms }}</h2>
+	<ul>
+	{% for result in results %}
+		<li><h5>{{ result['data']['session_title'] }} - {{ result['data']['course'] }}</h5>
+			<p>{{ result['match']|safe }}</p>
+			<p>Score {{ result['score'] }}</p>
+			<p><a href="http://130.132.8.127/files/curriculum_pdfs/{{ result['data']['url'] }}">Download</a></li>
+	{% endfor %}
+</div>
+{{ wtf.quick_form(form) }}
+{% endblock %}
